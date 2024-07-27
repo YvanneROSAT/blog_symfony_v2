@@ -6,6 +6,7 @@ Ce projet est la suite du projet initial, avec des fonctionnalités supplémenta
 ## Fonctionnalités
 - la base de donnée se trouve à la racine du projet
 - l'arborescence de mon site aussi en PNG
+- Le cahier de charge en PDF aussi
 
 ### Fonctionnalités Utilisateurs
 - **Accès aux articles** : Tous les utilisateurs peuvent consulter les articles publiés par l'admin.
