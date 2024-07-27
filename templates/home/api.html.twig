@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des articles en JSON</h1>
+    <pre>{{ posts|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+{% endblock %}

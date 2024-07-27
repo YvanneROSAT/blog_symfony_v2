@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ posts.title }}
+{% endblock %}
+
+{% block body %}
+	<h1>{{ posts.title }}</h1>
+	{% if app.user %}
+		<div class="d-flex justify-content-center">
+			<a href="{{ path('edit', {'id': posts.id}) }}" class="btn btn-warning me-2">Modifier</a>
+			<a href="{{ path('delete', {'id': posts.id}) }}" class="btn btn-danger">Supprimer</a>
+		</div>
+	{% endif %}
+	<p>{{ posts.summary }}</p>
+
+{% endblock %}

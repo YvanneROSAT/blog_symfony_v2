@@ -42,46 +42,53 @@
 		{% if app.request.attributes.get('_route') != 'login' %}
 			<nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="{{ url('home') }}">Yvanne ROSAT</a>
+					<a class="navbar-brand" href="{{ url('home') }}">KawaiiGuide</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
 						<div class="navbar-nav">
 							<a class="nav-link {{ app.request.attributes.get('_route') == 'home' ? 'active' : '' }}" aria-current="page" href="{{ url('home') }}">Home</a>
+							<a class="nav-link {{ app.request.attributes.get('_route') == 'api_posts' ? 'active' : '' }}" aria-current="page" href="{{ url('api_posts') }}">Api</a>
+							<a class="nav-link {{ app.request.attributes.get('_route') == 'category.index' ? 'active' : '' }}" aria-current="page" href="{{ path('category.index') }}">Toutes les Catégories</a>
 							{% if app.user and is_granted('ROLE_ADMIN') %}
-								<a class="nav-link {{ app.request.attributes.get('_route') == 'admin' ? 'active' : '' }}" href="{{ url('admin') }}">Admin</a>
+								<a class="nav-link {{ app.request.attributes.get('_route') == 'admin' ? 'active' : '' }}" href="{{ url('admin') }}">listes Catégories</a>
+								<a class="nav-link {{ app.request.attributes.get('_route') == 'admin' ? 'active' : '' }}" href="{{ url('admin') }}">listes articles</a>
 							{% endif %}
 							{% if app.user %}
-								<a class="nav-link btn btn-danger" href="{{ url('logout') }}">Logout</a>
+							<button class="btn btn-danger btn-sm ms-5">
+								<a class="nav-link" href="{{ url('logout') }}">Logout</a>
+							</button>
 							{% endif %}
 						</div>
 					</div>
 				</div>
 			</nav>
 		{% endif %}
-		<div class="container content"> {% block body %}{% endblock %}
-			</div>
-			{% if app.request.attributes.get('_route') != 'login' %}
-				<footer class="bg-body-tertiary text-center text-lg-start">
-					<div class="border-bottom flex">
-						<ul class="list-unstyled row text-center">
-							<li class="col">
-								<a href="#" class="nav-link">Mentions légales</a>
-							</li>
-							<li class="col">
-								<a href="#" class="nav-link">Accueil</a>
-							</li>
-							<li class="col">
-								<a href="#" class="nav-link">Conditions générales</a>
-							</li>
-						</ul>
-					</div>
-					<div class="text-center pt-2 m-0">
-						© 2024 Copyright:
-						<a class="text-body" href="https://yvannerosat.com/">Yvanne ROSAT</a>
-					</div>
-				</footer>
-			{% endif %}
-		</body>
-	</html>
+		<div class="container content">
+			{% include "components/alertMessage.html.twig" %}
+			{% block body %}{% endblock %}
+		</div>
+		{% if app.request.attributes.get('_route') != 'login' %}
+			<footer class="bg-body-tertiary text-center text-lg-start mt-5">
+				<div class="border-bottom flex">
+					<ul class="list-unstyled row text-center">
+						<li class="col">
+							<a href="{{ url('mentions') }}" class="nav-link">Mentions légales</a>
+						</li>
+						<li class="col">
+							<a href="{{ url('home') }}" class="nav-link">Accueil</a>
+						</li>
+						<li class="col">
+							<a href="{{ url('conditions') }}" class="nav-link">Conditions générales</a>
+						</li>
+					</ul>
+				</div>
+				<div class="text-center pt-2 m-0">
+					© 2024 Copyright:
+					<a class="text-body" href="https://yvannerosat.com/">Yvanne ROSAT</a>
+				</div>
+			</footer>
+		{% endif %}
+	</body>
+</html>

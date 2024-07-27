@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit
+{% endblock %}
+
+{% block body %}
+	<section class="my-3 mx-5 align-content-center">
+		{{ form_start(form) }}
+		{{ form_row(form.title) }}
+		{{ form_row(form.slug) }}
+		{{ form_row(form.summary) }}
+		{{ form_row(form.category) }}
+		{{ form_row(form.content) }}
+		<div class="d-flex gap-4">
+		{{ form_row(form.created_at) }}
+		{{ form_row(form.updated_at) }}
+		</div>
+		
+		{{ form_row(form.author) }}
+
+		<div class="d-flex gap-4 pt-3">
+			{{ form_row(form.modifier) }}
+			{{ form_row(form.create) }}
+			<form
+				action="{{ path('delete', {id: id.id}) }}" method="post">
+				{# simulier un requete delete cacher lier a overide:config/packages/framework #}
+				<input type="hidden" name="_method" value="DELETE">
+				<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+			</form>
+		</div>
+	</section>
+{% endblock %}

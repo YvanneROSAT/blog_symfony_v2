@@ -16,6 +16,17 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function findPostByCategory(int $id): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c', 'p')
+            ->join('c.article', 'p')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Category[] Returns an array of Category objects
     //     */
